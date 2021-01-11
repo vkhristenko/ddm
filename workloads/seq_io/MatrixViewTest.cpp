@@ -7,7 +7,7 @@ using ScalarType = float;
 constexpr int NRows = 10;
 constexpr int NCols = 10;
 
-using namespace dmwm;
+using namespace ddm;
 
 int main(int argc, char* argv[]) {
     // allocate storage

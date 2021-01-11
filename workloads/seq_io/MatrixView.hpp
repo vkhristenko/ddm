@@ -1,7 +1,7 @@
 #ifndef MatrixView_hpp
 #define MatrixView_hpp
 
-namespace dmwm {
+namespace ddm {
 
 enum class StorageType : char {
     RowMajor,
@@ -22,6 +22,18 @@ struct MatrixView {
         } else {
             return data[irow*ncols + icol];
         }
+    }
+    
+    T const& operator()(int irow, int icol) const {
+        if constexpr (Storage == StorageType::ColMajor) {
+            return data[icol*nrows + irow];
+        } else {
+            return data[irow*ncols + icol];
+        }
+    }
+
+    int TotalBytes() const {
+        return nrows * ncols * sizeof(T);
     }
 
     int nrows, ncols;
