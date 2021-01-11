@@ -31,10 +31,9 @@ int main(int argc, char *argv[]) {
     out.Write(sizeof(decltype(N)), &N);
 
     // loop and write
+    // reuse the memory
+    auto *data = static_cast<ScalarType*>(std::malloc(sizeof(ScalarType) * N*N));
     for (int ie=0; ie<nevents; ie++) {
-        // reuse the memory
-        auto *data = static_cast<ScalarType*>(std::malloc(sizeof(ScalarType) * N*N));
-
         auto fillMatrix = [](auto& m, int ie, int im, int lhsrhs) {
             for (int irow=0; irow<m.nrows; irow++)
                 for (int icol=0; icol<m.ncols; icol++)
